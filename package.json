@@ -14,6 +14,9 @@
   },
   "dependencies": {
     "gatsby": "^5.13.7",
+    "gatsby-plugin-image": "^3.13.1",
+    "gatsby-plugin-prismic-previews": "^6.0.2",
+    "gatsby-source-prismic": "^6.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -23,5 +26,8 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5"
   }
 }

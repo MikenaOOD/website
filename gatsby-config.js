@@ -7,6 +7,27 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
-  plugins: [],
-}
+  plugins: [
+    "gatsby-plugin-image",
+    {
+      resolve: `gatsby-source-prismic`,
+      options: {
+        repositoryName: `mikena`,
+        accessToken: `${process.env.API_KEY}`,
+        linkResolver:
+          ({ node, key, value }) =>
+          (page) =>
+            `/${page.uid}`,
+        schemas: {
+          page: require("./custom-types/page.json"),
+        },
+      },
+    },
+  ],
+};
