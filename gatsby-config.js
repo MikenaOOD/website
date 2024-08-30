@@ -15,6 +15,7 @@ require("dotenv").config({
 module.exports = {
   plugins: [
     "gatsby-plugin-image",
+    "gatsby-plugin-postcss",
     {
       resolve: `gatsby-source-prismic`,
       options: {
@@ -26,6 +27,7 @@ module.exports = {
             `/${page.uid}`,
         schemas: {
           page: require("./custom-types/page.json"),
+          website_config: require("./custom-types/website_config.json"),
         },
       },
     },

@@ -1,0 +1,31 @@
+{
+  "Main": {
+    "navigation_links": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "label": {
+            "type": "Text",
+            "config": {
+              "label": "Label"
+            }
+          },
+          "link": {
+            "type": "Link",
+            "config": {
+              "label": "Link",
+              "select": null
+            }
+          },
+          "submenu_of": {
+            "type": "Text",
+            "config": {
+              "label": "Submenu Of"
+            }
+          }
+        },
+        "label": "Navigation Links"
+      }
+    }
+  }
+}

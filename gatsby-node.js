@@ -9,7 +9,7 @@ exports.createPages = async ({ graphql, actions }) => {
         nodes {
           id
           uid
-          url
+          lang
         }
       }
     }
@@ -18,8 +18,10 @@ exports.createPages = async ({ graphql, actions }) => {
   const template = path.resolve("src/templates/page.jsx");
 
   pages.data.allPrismicPage.nodes.forEach((page) => {
+    const pagePath = page.uid === "index" ? "/" : `/${page.uid}`;
+
     createPage({
-      path: `/${page.uid}`,
+      path: pagePath,
       component: template,
       context: {
         uid: page.uid,
