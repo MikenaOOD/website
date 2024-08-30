@@ -25,6 +25,108 @@
         "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
         "label": "content"
       }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": null,
+        "choices": {
+          "photo_text_left": {
+            "type": "Slice",
+            "fieldset": "Photo Text Left",
+            "description": "A container with a photo and a text.",
+            "icon": "insert_photo",
+            "non-repeat": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              },
+              "container_header": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+                  "label": "Container Header"
+                }
+              },
+              "container_content": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                  "label": "Container Content"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "photo_text_right": {
+            "type": "Slice",
+            "fieldset": "Photo Text Right",
+            "description": "A container where the photo is on the right.",
+            "icon": "insert_photo",
+            "display": "list",
+            "non-repeat": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "image"
+                }
+              },
+              "container_header": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+                  "label": "Container Header"
+                }
+              },
+              "container_content": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                  "label": "Container Content"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "header___text": {
+            "type": "Slice",
+            "fieldset": "Header & Text",
+            "description": "A simple header with text and a link.",
+            "icon": "format_color_text",
+            "display": "list",
+            "non-repeat": {
+              "container_header": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+                  "label": "Container Header"
+                }
+              },
+              "container_content": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
+                  "label": "Container Content"
+                }
+              },
+              "container_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Container Link"
+                }
+              }
+            },
+            "repeat": {}
+          }
+        }
+      }
     }
   }
 }
