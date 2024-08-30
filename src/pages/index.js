@@ -6,11 +6,13 @@ import Layout from "../components/Layout";
 import PhotoTextLeft from "../components/slices/PhotoTextLeft";
 import PhotoTextRight from "../components/slices/PhotoTextRight";
 import HeaderText from "../components/slices/HeaderText";
+import Hero from "../components/slices/Hero";
 
 export default function Home() {
   const data = useStaticQuery(graphql`
     query {
       prismicPage(uid: { eq: "index" }) {
+        uid
         data {
           title {
             text
@@ -58,12 +60,33 @@ export default function Home() {
                 container_content {
                   html
                 }
+                link_label
                 container_link {
                   id
                   lang
                   link_type
                   slug
                   uid
+                }
+              }
+            }
+            ... on PrismicPageDataBodyHeroSection {
+              slice_type
+              primary {
+                container_content {
+                  html
+                }
+                link_label
+                link {
+                  id
+                  lang
+                  link_type
+                  slug
+                  uid
+                }
+                hero_image {
+                  url
+                  alt
                 }
               }
             }
@@ -85,6 +108,8 @@ export default function Home() {
             return <PhotoTextRight key={index} slice={slice} />;
           case "header___text":
             return <HeaderText key={index} slice={slice} />;
+          case "hero_section":
+            return <Hero key={index} slice={slice} />;
           default:
             return null;
         }

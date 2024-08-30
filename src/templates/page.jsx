@@ -6,6 +6,7 @@ import Layout from "../components/Layout";
 import PhotoTextLeft from "../components/slices/PhotoTextLeft";
 import PhotoTextRight from "../components/slices/PhotoTextRight";
 import HeaderText from "../components/slices/HeaderText";
+import Hero from "../components/slices/Hero";
 
 const Page = ({ data }) => {
   if (!data || !data.prismicPage) return null;
@@ -21,6 +22,8 @@ const Page = ({ data }) => {
             return <PhotoTextRight key={index} slice={slice} />;
           case "header___text":
             return <HeaderText key={index} slice={slice} />;
+          case "hero_section":
+            return <Hero key={index} slice={slice} />;
           default:
             return null;
         }
@@ -82,12 +85,33 @@ export const pageQuery = graphql`
               container_content {
                 html
               }
+              link_label
               container_link {
                 id
                 lang
                 link_type
                 slug
                 uid
+              }
+            }
+          }
+          ... on PrismicPageDataBodyHeroSection {
+            slice_type
+            primary {
+              container_content {
+                html
+              }
+              link_label
+              link {
+                id
+                lang
+                link_type
+                slug
+                uid
+              }
+              hero_image {
+                url
+                alt
               }
             }
           }

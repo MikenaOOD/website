@@ -2,8 +2,6 @@ import { Link } from "gatsby";
 import React from "react";
 
 const HeaderText = ({ slice }) => {
-  console.log(slice);
-
   return (
     <div className="py-16 px-8 text-center">
       <h2 className="text-4xl font-medium mb-6">
@@ -20,7 +18,7 @@ const HeaderText = ({ slice }) => {
           to={slice.primary.container_link.uid}
           className="text-black font-bold underline"
         >
-          Научи повече
+          {slice.primary.link_label}
         </Link>
       )}
     </div>
