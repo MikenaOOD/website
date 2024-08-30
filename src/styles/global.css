@@ -11,3 +11,22 @@ nav {
 body {
   font-family: "Montserrat", sans-serif;
 }
+
+.primary {
+  background-color: #7690d0;
+  transition: all 0.2s;
+}
+
+.primary:hover {
+  background-color: #5f7eb8;
+}
+
+.secondary {
+  color: #7690d0;
+  border: 3px solid #7690d0;
+  transition: all 0.2s;
+}
+
+.secondary:hover {
+  background-color: #eeecec;
+}
