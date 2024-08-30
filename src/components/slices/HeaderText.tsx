@@ -5,7 +5,7 @@ const HeaderText = ({ slice }) => {
   console.log(slice);
 
   return (
-    <div className="bg-gray-100 py-16 px-8 text-center">
+    <div className="py-16 px-8 text-center">
       <h2 className="text-4xl font-medium mb-6">
         {slice.primary.container_header.text}
       </h2>
