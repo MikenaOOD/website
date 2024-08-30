@@ -5,6 +5,7 @@ import Layout from "../components/Layout";
 // Import slice components
 import PhotoTextLeft from "../components/slices/PhotoTextLeft";
 import PhotoTextRight from "../components/slices/PhotoTextRight";
+import HeaderText from "../components/slices/HeaderText";
 
 export default function Home() {
   const data = useStaticQuery(graphql`
@@ -48,6 +49,24 @@ export default function Home() {
                 }
               }
             }
+            ... on PrismicPageDataBodyHeaderText {
+              slice_type
+              primary {
+                container_header {
+                  text
+                }
+                container_content {
+                  html
+                }
+                container_link {
+                  id
+                  lang
+                  link_type
+                  slug
+                  uid
+                }
+              }
+            }
           }
         }
       }
@@ -64,6 +83,8 @@ export default function Home() {
             return <PhotoTextLeft key={index} slice={slice} />;
           case "photo_text_right":
             return <PhotoTextRight key={index} slice={slice} />;
+          case "header___text":
+            return <HeaderText key={index} slice={slice} />;
           default:
             return null;
         }
