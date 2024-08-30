@@ -83,7 +83,11 @@ export const pageQuery = graphql`
                 html
               }
               container_link {
-                url
+                id
+                lang
+                link_type
+                slug
+                uid
               }
             }
           }
