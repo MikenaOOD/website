@@ -8,13 +8,12 @@ import PhotoTextRight from "../components/slices/PhotoTextRight";
 import HeaderText from "../components/slices/HeaderText";
 
 const Page = ({ data }) => {
-  if (!data) return null;
+  if (!data || !data.prismicPage) return null;
   const page = data.prismicPage;
 
   return (
     <Layout>
       {page.data.body.map((slice, index) => {
-        // Switch case to choose the right component for each slice
         switch (slice.slice_type) {
           case "photo_text_left":
             return <PhotoTextLeft key={index} slice={slice} />;
@@ -33,8 +32,9 @@ const Page = ({ data }) => {
 export default Page;
 
 export const pageQuery = graphql`
-  query {
-    prismicPage(uid: { eq: "index" }) {
+  query PageBySlug($uid: String!) {
+    prismicPage(uid: { eq: $uid }) {
+      uid
       data {
         title {
           text
