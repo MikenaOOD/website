@@ -1,16 +1,61 @@
+import { graphql, Link, useStaticQuery } from "gatsby";
 import React from "react";
 
+interface ILink {
+  label: string;
+  submenu_of: string | null;
+  link?: any;
+}
+
 const Navbar = () => {
+  const staticData = useStaticQuery(graphql`
+    query {
+      allPrismicWebsiteConfig {
+        edges {
+          node {
+            _previewable
+            lang
+            alternate_languages {
+              id
+              type
+              lang
+              uid
+            }
+            data {
+              navigation_links {
+                link {
+                  id
+                  lang
+                  link_type
+                  slug
+                  uid
+                }
+                label
+                submenu_of
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const links: ILink[] =
+    staticData.allPrismicWebsiteConfig.edges[0].node.data.navigation_links;
+
   return (
     <nav className="px-14 py-3 w-full border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <Link
+          to={"/"}
+          className="flex items-center space-x-3 rtl:space-x-reverse"
+        >
           <img
             className="h-8 logo"
-            src="../../static/mikena-main-logo.png"
+            src="../mikena-main-logo.png"
             alt="Mikena Logo"
           />
-        </a>
+        </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <button
             type="button"
@@ -35,9 +80,9 @@ const Navbar = () => {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M1 1h15M1 7h15M1 13h15"
               />
             </svg>
@@ -48,30 +93,25 @@ const Navbar = () => {
           id="navbar-sticky"
         >
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <a href="#" className="group transition duration-300 font-light">
-                Услуги
-                <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-px bg-white"></span>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="group transition duration-300 font-light">
-                Продукция
-                <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-px bg-white"></span>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="group transition duration-300 font-light">
-                За Нас
-                <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-px bg-white"></span>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="group transition duration-300 font-light">
-                Контакти
-                <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-px bg-white"></span>
-              </a>
-            </li>
+            {links.map((link, index) => {
+              const url = link.link?.uid
+                ? link.link.lang === "bg"
+                  ? `/${link.link.uid}`
+                  : `/${link.link.lang}/${link.link.uid}`
+                : "#";
+
+              return (
+                <li key={index}>
+                  <Link
+                    to={url}
+                    className="group transition duration-300 font-light"
+                  >
+                    {link.label}
+                    <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-px bg-white"></span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

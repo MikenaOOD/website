@@ -27,6 +27,7 @@ module.exports = {
             `/${page.uid}`,
         schemas: {
           page: require("./custom-types/page.json"),
+          website_config: require("./custom-types/website_config.json"),
         },
       },
     },
