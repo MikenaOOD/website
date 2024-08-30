@@ -5,7 +5,7 @@ const PrimaryButton = ({ content, url }) => {
   if (url) {
     return (
       <Link
-        className="text-white py-6 px-3 rounded-full shadow-xl text-xl primary"
+        className="text-white py-6 px-3 rounded-full shadow-xl text-xl primary inline-block"
         to={url}
       >
         {content}
